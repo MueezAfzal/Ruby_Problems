@@ -1,18 +1,16 @@
   def domino(s)
-    s = s.split(",") #Split to make an array of Dominos
-    num = 0
-    max = 0
-    for i in 0..(s.length-2) do #loop to traverse till 2nd last
-      if s[i][2]==s[i+1][0]     #Checking R and L of Dominos
-        num==0 ? num+=2 : num+=1#If it is 1st combination the add 2 else 1
-      elsif num>max
+    s = s.split(',') #Split to make an array of Dominos
+    num, max = 0, 0
+    (0..(s.length-2)).times do |i| #loop to traverse till 2nd last
+      if s[i][-1] == s[i+1][0]     #Checking R and L of Dominos
+        num += (num.zero? && 2) || 1
+      elsif num > max
         max=num      #Changing Max length Combinatin
         num=0
       end
     end
-    if max<num      #for the last combination to chack max
-      max=num
-    end
+
+    max=num if max < num      #for the last combination to chack max
     p max
   end
 
